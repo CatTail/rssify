@@ -18,7 +18,7 @@ exports.github = async ([owner, repo]) => {
   })
 
   const feed = new RSS({
-    title: repository.name,
+    title: repository.description,
     description: repository.description,
     site_url: `https://github.com/${owner}/${repo}/issues`
   })
