@@ -8,6 +8,14 @@ const handlers = require('./handlers')
 const env = process.env.NODE_ENV
 
 const server = micro(async (req, res) => {
+  if (req.url === '/') {
+    res.writeHead(302, {
+      'Location': 'https://github.com/CatTail/rssify'
+    })
+    res.end()
+    return
+  }
+
   const {path} = url.parse(req.url)
   const [, type, ...rest] = path.split('/')
   debug(type, rest)
