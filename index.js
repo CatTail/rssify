@@ -5,6 +5,8 @@ const debug = require('debug')('rssify')
 
 const handlers = require('./handlers')
 
+const env = process.env.NODE_ENV
+
 const server = micro(async (req, res) => {
   const {path} = url.parse(req.url)
   const [, type, ...rest] = path.split('/')
@@ -23,4 +25,4 @@ const server = micro(async (req, res) => {
   res.end(feed)
 })
 
-server.listen(3000)
+server.listen(env === 'production' ? 443 : 3000)
