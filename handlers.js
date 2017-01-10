@@ -1,5 +1,6 @@
 const request = require('request-promise')
 const RSS = require('rss')
+const marked = require('marked')
 
 const pkg = require('./package')
 
@@ -24,7 +25,7 @@ exports.github = async ([owner, repo]) => {
   issues.forEach((issue) => {
     feed.item({
       title: issue.title,
-      description: issue.body,
+      description: marked(issue.body),
       url: issue.url,
       guid: issue.url,
       author: issue.user.login,
