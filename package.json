@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "debug": "^2.6.0",
+    "marked": "^0.3.6",
     "micro": "latest",
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
