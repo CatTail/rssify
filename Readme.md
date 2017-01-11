@@ -7,10 +7,10 @@ To get expressjs github issues as RSS feed, simply visit https://rssify.now.sh/g
 
 ## Installation
 
-  npm install
+    npm install
 
 ## Deploy
 
-  npm install -g now
-  # magic!!!
-  now
+    npm install -g now
+    # magic!!!
+    now
