@@ -1,9 +1,12 @@
 # rssify
-> Convert anything to rss feed
+> Convert anything to rss feed (currently only implement Github issues)
 
 ## Usage
 
-To get expressjs github issues as RSS feed, simply visit https://rssify.now.sh/github/expressjs/express
+To get Github issues as RSS feed, simpily use pattern
+
+* `expressjs/express` ===> https://rssify.now.sh/github/expressjs/express
+* `CatTail/rssify` ===> https://rssify.now.sh/github/CatTail/rssify
 
 ## Installation
 
