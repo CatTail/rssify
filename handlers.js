@@ -20,7 +20,11 @@ exports.github = async ([owner, repo]) => {
   const feed = new RSS({
     title: repository.description,
     description: repository.description,
-    site_url: `https://github.com/${owner}/${repo}/issues`
+    feed_url: `https://rssify.now.sh/github/${owner}/${repo}`,
+    site_url: `https://github.com/${owner}/${repo}/issues`,
+    image_url: `https://github.com/${owner}.png`,
+    generator: 'rssify',
+    ttl: 60
   })
   issues.forEach((issue) => {
     feed.item({
