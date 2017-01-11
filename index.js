@@ -28,7 +28,7 @@ const server = micro(async (req, res) => {
   const feed = await handlers[type](rest)
   res.writeHead(200, {
     'Content-Length': Buffer.byteLength(feed),
-    'Content-Type': 'application/rss+xml; charset=utf-8'
+    'Content-Type': 'text/xml'
   })
   res.end(feed)
 })
