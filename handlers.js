@@ -26,7 +26,7 @@ exports.github = async ([owner, repo]) => {
     feed.item({
       title: issue.title,
       description: marked(issue.body),
-      url: issue.url,
+      url: issue.html_url,
       guid: issue.url,
       author: issue.user.login,
       date: issue.created_at
