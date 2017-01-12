@@ -10,7 +10,7 @@ To get Github issues as RSS feed, simpily use pattern
 
 ## Deploy
 
-  npm install
-  npm install -g now
-  now secrets add rssify_github_access_token "xxxxxxxxxxxxxxxxxxxxxx"
-  npm run deploy
+    npm install
+    npm install -g now
+    now secrets add rssify_github_access_token "xxxxxxxxxxxxxxxxxxxxxx"
+    npm run deploy
