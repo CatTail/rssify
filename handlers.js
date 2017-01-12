@@ -5,7 +5,10 @@ const marked = require('marked')
 const pkg = require('./package')
 
 exports.github = async ([owner, repo]) => {
-  const headers = {'User-Agent': `rssify/${pkg.version}`}
+  const headers = {
+    'User-Agent': `rssify/${pkg.version}`,
+    'Authorization': `token ${process.env.RSSIFY_GITHUB_ACCESS_TOKEN}`
+  }
   const repository = await request({
     uri: `https://api.github.com/repos/${owner}/${repo}`,
     headers,
