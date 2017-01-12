@@ -13,7 +13,8 @@
     "precommit": "npm run lint",
     "start": "NODE_ENV=production node --harmony-async-await index",
     "dev": "DEBUG=rssify nodemon -x 'node --harmony-async-await' index",
-    "lint": "standard"
+    "lint": "standard",
+    "deploy": "now -e RSSIFY_GITHUB_ACCESS_TOKEN=@rssify_github_access_token"
   },
   "devDependencies": {
     "husky": "^0.12.0",
