@@ -1,3 +1,4 @@
+const fs = require('fs')
 const url = require('url')
 
 const micro = require('micro')
@@ -6,13 +7,15 @@ const debug = require('debug')('rssify')
 const handlers = require('moder')(`${__dirname}/handlers`)
 
 const env = process.env.NODE_ENV
+const index = fs.readFileSync('index.html')
 
 const server = micro(async (req, res) => {
   if (req.url === '/') {
-    res.writeHead(302, {
-      'Location': 'https://github.com/CatTail/rssify'
+    res.writeHead(200, {
+      'Content-Length': Buffer.byteLength(index),
+      'Content-Type': 'text/html'
     })
-    res.end()
+    res.end(index)
     return
   }
 
