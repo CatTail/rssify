@@ -37,8 +37,8 @@ module.exports = async ([name]) => {
 
 function processContent (post) {
   // expand img to absolute url
-  post.content = post.content.replace(/<img [^>]*?src="/gi, (match) => {
-    return `${match}${getImageHost()}`
+  post.content = post.content.replace(/<img [^>]*?src="/gi, () => {
+    return `<img referrerpolicy="no-referrer" src="${getImageHost()}`
   })
   // prepend titleImage to content
   if (post.titleImage) {
