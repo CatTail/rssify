@@ -1,0 +1,39 @@
+const RSS = require('rss')
+
+const request = require('../request')
+
+module.exports = async ([name]) => {
+  const zhuanlan = await request({
+    uri: `https://zhuanlan.zhihu.com/api/columns/${name}`,
+    json: true
+  })
+  const posts = await request({
+    uri: `https://zhuanlan.zhihu.com/api/columns/${name}/posts?limit=20`,
+    json: true
+  })
+
+  const feed = new RSS({
+    title: `${zhuanlan.name} - 知乎专栏`,
+    description: zhuanlan.intro,
+    feed_url: `https://rssify.now.sh/zhuanlan/${name}`,
+    site_url: `https://zhuanlan.zhihu.com/${name}`,
+    image_url: `https://pic1.zhimg.com/${zhuanlan.avatar.id}_xl.jpg`,
+    generator: 'rssify',
+    ttl: 60
+  })
+  posts.forEach((post) => {
+    // append titleImage to content
+    if (post.titleImage) {
+      post.content = `<p><img src="${post.titleImage}"></p>` + post.content
+    }
+    feed.item({
+      title: post.title,
+      description: post.content,
+      url: `https://zhuanlan.zhihu.com${post.url}`,
+      guid: `https://zhuanlan.zhihu.com${post.url}`,
+      author: post.author.name,
+      date: post.publishedTime
+    })
+  })
+  return feed
+}
