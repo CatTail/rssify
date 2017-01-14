@@ -1,12 +1,10 @@
-const request = require('request-promise')
 const RSS = require('rss')
 const marked = require('marked')
 
-const pkg = require('./package')
+const request = require('../request')
 
-exports.github = async ([owner, repo]) => {
+module.exports = async ([owner, repo]) => {
   const headers = {
-    'User-Agent': `rssify/${pkg.version}`,
     'Authorization': `token ${process.env.RSSIFY_GITHUB_ACCESS_TOKEN}`
   }
   const repository = await request({
@@ -39,6 +37,5 @@ exports.github = async ([owner, repo]) => {
       date: issue.created_at
     })
   })
-  const xml = feed.xml({indent: true})
-  return xml
+  return feed
 }

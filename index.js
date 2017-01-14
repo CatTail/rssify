@@ -3,7 +3,7 @@ const url = require('url')
 const micro = require('micro')
 const debug = require('debug')('rssify')
 
-const handlers = require('./handlers')
+const handlers = require('moder')(`${__dirname}/handlers`)
 
 const env = process.env.NODE_ENV
 
@@ -26,11 +26,12 @@ const server = micro(async (req, res) => {
   }
 
   const feed = await handlers[type](rest)
+  const xml = feed.xml({indent: true})
   res.writeHead(200, {
-    'Content-Length': Buffer.byteLength(feed),
+    'Content-Length': Buffer.byteLength(xml),
     'Content-Type': 'text/xml'
   })
-  res.end(feed)
+  res.end(xml)
 })
 
 server.listen(env === 'production' ? 443 : 3000)

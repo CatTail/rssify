@@ -1,5 +1,9 @@
 # rssify
-> Convert anything to rss feed (currently only implement Github issues), build with https://zeit.co/now
+> Convert anything to rss feed
+
+转 RSS 服务，目前支持 Github issues 和知乎专栏
+
+---
 
 ## Usage
 
@@ -14,3 +18,7 @@ To get Github issues as RSS feed, simpily use pattern
     npm install -g now
     now secrets add rssify_github_access_token "xxxxxxxxxxxxxxxxxxxxxx"
     npm run deploy
+
+## Credit
+
+lilydjwg for his wonderful project [morerssplz](https://github.com/lilydjwg/morerssplz)
