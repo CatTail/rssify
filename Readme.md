@@ -3,14 +3,9 @@
 
 转 RSS 服务，目前支持 Github issues 和知乎专栏
 
----
+知乎专栏 https://zhuanlan.zhihu.com/junyu，RSS 地址为 https://rssify.now.sh/zhuanlan/junyu
 
-## Usage
-
-To get Github issues as RSS feed, simpily use pattern
-
-* `expressjs/express` ===> https://rssify.now.sh/github/expressjs/express
-* `CatTail/rssify` ===> https://rssify.now.sh/github/CatTail/rssify
+Github 项目 https://github.com/CatTail/rssify 的 issues，RSS 地址为 https://rssify.now.sh/github/CatTail/rssify
 
 ## Deploy
 

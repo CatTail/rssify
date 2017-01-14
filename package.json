@@ -13,7 +13,7 @@
   "scripts": {
     "precommit": "npm run lint",
     "start": "NODE_ENV=production node --harmony-async-await index",
-    "dev": "DEBUG=rssify nodemon -x 'node --harmony-async-await' index",
+    "dev": "DEBUG=rssify nodemon -x 'node --harmony-async-await' -e js,html index",
     "lint": "standard",
     "deploy": "now -e RSSIFY_GITHUB_ACCESS_TOKEN=@rssify_github_access_token"
   },
