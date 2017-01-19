@@ -3,14 +3,26 @@ const url = require('url')
 
 const micro = require('micro')
 const debug = require('debug')('rssify')
+const morgan = require('morgan')
 
+const logger = require('./logger')
 const handlers = require('moder')(`${__dirname}/handlers`)
 
-const env = process.env.NODE_ENV
 const index = fs.readFileSync('public/index.html')
 const notfound = fs.readFileSync('public/404.html')
+const accesslog = morgan('combined', {stream: {write: (message) => { logger.info(message) }}})
 
 const server = micro(async (req, res) => {
+  // record accesslog
+  await new Promise((resolve, reject) => {
+    accesslog(req, res, (err) => {
+      if (err) {
+        return reject(err)
+      }
+      resolve()
+    })
+  })
+
   if (req.url === '/') {
     res.writeHead(200, {
       'Content-Length': Buffer.byteLength(index),
@@ -50,4 +62,4 @@ const server = micro(async (req, res) => {
   }
 })
 
-server.listen(env === 'production' ? 443 : 3000)
+server.listen(8000)
