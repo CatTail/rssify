@@ -12,7 +12,7 @@ Github 项目 [https://github.com/CatTail/rssify](https://github.com/CatTail/rss
     npm install
     npm install -g now
     now secrets add rssify_github_access_token "xxxxxxxxxxxxxxxxxxxxxx"
-    npm run deploy
+    now
 
 ## Credit
 
