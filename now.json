@@ -1,4 +1,5 @@
 {
+  "alias": "rssify",
   "env": {
     "RSSIFY_GITHUB_ACCESS_TOKEN": "@rssify_github_access_token",
     "RSSIFY_LOGGLY_ACCESS_TOKEN": "@rssify_loggly_access_token"
