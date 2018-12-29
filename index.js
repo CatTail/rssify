@@ -58,6 +58,7 @@ const server = micro(async (req, res) => {
       res.end(notfound)
       return
     }
+    logger.error(err)
     throw err
   }
 })
