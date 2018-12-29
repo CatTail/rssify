@@ -13,23 +13,23 @@ module.exports = async ([name]) => {
   })
 
   const feed = new RSS({
-    title: `${zhuanlan.name} - 知乎专栏`,
+    title: `${zhuanlan.title} - 知乎专栏`,
     description: zhuanlan.intro,
     feed_url: `https://rssify.now.sh/zhuanlan/${name}`,
     site_url: `https://zhuanlan.zhihu.com/${name}`,
-    image_url: `${getImageHost()}${zhuanlan.avatar.id}_xl.jpg`,
+    image_url: zhuanlan.author.avatar_url,
     generator: 'rssify',
     ttl: 60
   })
-  posts.forEach((post) => {
+  posts.data.forEach((post) => {
     processContent(post)
     feed.item({
       title: post.title,
-      description: post.content,
-      url: `https://zhuanlan.zhihu.com${post.url}`,
-      guid: `https://zhuanlan.zhihu.com${post.url}`,
+      description: post.excerpt,
+      url: post.url,
+      guid: post.url,
       author: post.author.name,
-      date: post.publishedTime
+      date: new Date(post.created * 1000)
     })
   })
   return feed
@@ -37,12 +37,12 @@ module.exports = async ([name]) => {
 
 function processContent (post) {
   // expand img to absolute url
-  post.content = post.content.replace(/<img [^>]*?src="/gi, () => {
+  post.excerpt = post.excerpt.replace(/<img [^>]*?src="/gi, () => {
     return `<img referrerpolicy="no-referrer" src="${getImageHost()}`
   })
-  // prepend titleImage to content
-  if (post.titleImage) {
-    post.content = `<p><img src="${post.titleImage}"></p>` + post.content
+  // prepend titleImage to excerpt
+  if (post.title_image) {
+    post.excerpt = `<p><img src="${post.title_image}"></p>` + post.excerpt
   }
 }
 
