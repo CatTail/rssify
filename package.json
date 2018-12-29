@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "node index",
-    "dev": "DEBUG=rssify nodemon -e js,html index",
+    "dev": "NODE_ENV=development DEBUG=rssify nodemon -e js,html index",
     "lint": "standard --fix"
   },
   "devDependencies": {
